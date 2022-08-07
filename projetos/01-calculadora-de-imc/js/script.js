@@ -1,4 +1,5 @@
 const calcular = document.getElementById('calcular');
+const cancelar = document.getElementById('cancelar');
 
 const calcularIMC = function () {
     
@@ -34,4 +35,9 @@ const calcularIMC = function () {
     }
 }
 
+const limparCampos = function () {
+    window.location.reload();
+}
+
 calcular.addEventListener('click', calcularIMC);
+cancelar.addEventListener('click', limparCampos);

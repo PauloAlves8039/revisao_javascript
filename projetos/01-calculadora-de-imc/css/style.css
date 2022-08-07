@@ -1,6 +1,7 @@
 :root{
     --base-color: #00E5EE;
     --element-color: #000000;
+    --reset-color: #FFFFFF;
 }
 
 main{
@@ -81,4 +82,8 @@ button{
     padding: 20px;
     box-sizing: border-box;
     user-select: none;
+}
+
+.reset{
+    color: var(--reset-color);
 }
