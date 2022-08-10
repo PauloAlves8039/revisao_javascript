@@ -11,12 +11,12 @@
 <body>
     
     <main>
-        <div>
-            <img src="../../assets/imagens/desligado.png" id="img">
+        <div id="imagem">
+            <img id="semaforo" src="../../assets/imagens/desligado.png">
         </div>
         <div id="buttons">
-            <button class="btnLigar">Ligar</button>
-            <button class="btnDesligar">Desligar</button>
+            <button class="btnLigar" onclick="executandoSinalVermelho()">Ligar</button>
+            <button class="btnDesligar" onclick="desligarSemaforo()">Desligar</button>
         </div>
         <div id="resultado">
             <br>
