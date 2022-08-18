@@ -12,7 +12,10 @@
 
 .title-slide{
     text-align: center;
+    height: 55px;
     margin-bottom: -5%;
+    color: var(--text-color);
+    background-image: radial-gradient(circle, #08CCFD 0%, #52E3BA 100%);
 }
 
 .container-slide{
@@ -41,6 +44,7 @@
     height: 50vh;
     transition: all 1s;
 }
+
 .item:first-child{
     margin-left: -100%;
 }
@@ -61,6 +65,7 @@
     user-select: none;
     z-index: 1;
 }
+
 .action-button:hover{
     color: var(--text-color);
     background-color: var(--element-color);
