@@ -4,6 +4,10 @@
     --reset-color: #FFFFFF;
 }
 
+body{
+    background-image: radial-gradient(circle, #07a5f9 0%, #262928 100%);
+}
+
 main{
     display: flex;
     width: 100vw;
