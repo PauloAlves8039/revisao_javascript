@@ -4,12 +4,26 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Arquivos</title>
     <link rel="icon" href="../../assets/icone/js.ico">
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    
+
+        <h1>Salvar texto em arquivo</h1>
+        <div>
+            <label for="titulo">Nome do Arquivo</label>
+            <input type="text" id="titulo" placeholder="Nome do Arquivo">
+        </div>
+        <div>
+            <label for="texto">Texto</label>
+            <textarea id="texto" placeholder="Digite um texto para salva-lo"></textarea>
+        </div>
+        <div>
+            <button id="salvar" onclick="salvar()">Salvar</button>
+            <button id="cancelar" onclick="cancelar()">Cancelar</button>
+        </div>
+
     <script src="js/script.js"></script>
 </body>
 </html>
