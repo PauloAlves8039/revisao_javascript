@@ -47,6 +47,10 @@ button{
     border-radius: 5px;
 }
 
+.buttons{
+    margin-top: 20px;
+}
+
 #salvar{
     background-color: var(--text-color);
     color: var(--button-color);
