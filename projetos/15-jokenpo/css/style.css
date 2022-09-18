@@ -45,7 +45,7 @@ h1 {
     text-align: center;
 }
 
-#jogar {
+#btnJogar {
     width: 100px;
     height: 30px;
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -57,7 +57,7 @@ h1 {
     cursor: pointer;
 }
 
-#jogar:hover{
+#btnJogar:hover{
     width: 100px;
     height: 30px;
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -69,7 +69,7 @@ h1 {
     cursor: pointer;
 }
 
-#reset {
+#btnReset {
     width: 100px;
     height: 30px;
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -81,7 +81,7 @@ h1 {
     cursor: pointer;
 }
 
-#reset:hover {
+#btnReset:hover {
     width: 100px;
     height: 30px;
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
