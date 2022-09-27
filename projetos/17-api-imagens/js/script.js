@@ -50,8 +50,43 @@ const loadGallery = async function (text, page = 1) {
     document.querySelector('#page').value = page;
 };
 
-const handleKeypress = ({key, target}) => {
+const handleKeypress = function ({key, target}) {
     if (key === 'Enter') {
         loadGallery(target.value);
     }
 };
+
+const handlePage = function ({key, target}) {
+    const text = document.querySelector('#search-input').value;
+    
+    if (key === 'Enter') {
+        loadGallery(text, target.value);
+    }
+};
+
+const handleNext = function () {
+    let page = Number(document.querySelector('#page').value);
+    const totalPages = Number(document.querySelector('#page-total').textContent.replace('/', ''));
+    const text = document.querySelector('#search-input').value;
+    
+    if (page < totalPages) {
+        page++;
+        loadGallery(text, page);
+    }
+};
+
+const handlePrevious = function () {
+    let page = Number(document.querySelector('#page').value);
+    const text = document.querySelector('#search-input').value;
+    
+    if (page > 1) {
+        page--;
+        loadGallery(text, page);
+    }
+};
+
+document.querySelector('#search-input').addEventListener('keypress', handleKeypress);
+document.querySelector('#page').addEventListener('keypress', handlePage);
+document.querySelector('#page-next').addEventListener('click', handleNext);
+document.querySelector('#page-previous').addEventListener('click', handlePrevious);
+
