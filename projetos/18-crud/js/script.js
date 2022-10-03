@@ -2,7 +2,7 @@ const openModal = function () {
     document.getElementById('modal').classList.add('active');
 }
 
-const closeModel = function () {
+const closeModal = function () {
     clearFields();
     document.getElementById('modal').classList.remove('active');
 }
@@ -16,9 +16,7 @@ const createCliente = function (client) {
     setLocalStorage(dbCliente);
 }
 
-const readCliente = function () {
-    return getLocalStorage();
-}
+const readClient = () => getLocalStorage();
 
 const isValidField = function () {
     return document.getElementById('form').reportValidity();
@@ -41,18 +39,25 @@ const saveClient = function () {
             cidade: document.getElementById('cidade').value,
         }
 
-        constindex = document.getElementById('nome').dataset.index
+        const index = document.getElementById('nome').dataset.index;
 
         if (index == 'new') {
             createCliente(client);
             updateTable();
-            closeModel();
+            closeModal();
         }else {
             updateTable();
-            closeModel();
+            closeModal();
         }
     }
 }
+
+const deleteClient = (index) => {
+    const dbClient = readClient()
+    dbClient.splice(index, 1)
+    setLocalStorage(dbClient)
+}
+
 
 const createRow = function (client, index) {
     const newRow = document.createElement('tr')
@@ -66,16 +71,56 @@ const createRow = function (client, index) {
             <button type="button" class="button red" id="delete-${index}" >Excluir</button>
         </td>
     `
-    document.querySelector('#tableClient>tbody').appendChild(newRow)
+    document.querySelector('#tableClient>tbody').appendChild(newRow);
 }
 
 const clearTable = function () {
-    const rows = document.querySelectorAll('#tableClient>tbody tr')
-    rows.forEach(row => row.parentNode.removeChild(row))
+    const rows = document.querySelectorAll('#tableClient>tbody tr');
+    rows.forEach(row => row.parentNode.removeChild(row));
 }
 
 const updateTable = function () {
-    const dbClient = readClient()
-    clearTable()
-    dbClient.forEach(createRow)
+    const dbClient = readClient();
+    clearTable();
+    dbClient.forEach(createRow);
 }
+
+const fillFields = function (client) {
+    document.getElementById('nome').value = client.nome
+    document.getElementById('email').value = client.email
+    document.getElementById('celular').value = client.celular
+    document.getElementById('cidade').value = client.cidade
+    document.getElementById('nome').dataset.index = client.index
+}
+
+const editDelete = function (event) {
+    if (event.target.type == 'button') {
+
+        const [action, index] = event.target.id.split('-');
+
+        if (action == 'edit') {
+            editClient(index);
+
+        } else {
+            const client = readClient()[index]
+            const response = confirm(`Deseja realmente excluir o cliente ${client.nome}`);
+
+            if (response) {
+                deleteClient(index);
+                updateTable();
+            }
+        }
+    }
+}
+
+updateTable();
+
+document.getElementById('cadastrarCliente').addEventListener('click', openModal);
+
+document.getElementById('modalClose').addEventListener('click', closeModal);
+
+document.getElementById('salvar').addEventListener('click', saveClient);
+
+document.querySelector('#tableClient>tbody').addEventListener('click', editDelete);
+
+document.getElementById('cancelar').addEventListener('click', closeModal);
