@@ -18,11 +18,11 @@ const calcularIMC = function () {
             classificacaoDoIMC = 'abaixo do peso.';
         }else if (calculoDoIMC < 25){
             classificacaoDoIMC = 'com peso ideal, parabéns!';
-        }else if (classificacaoDoIMC < 30){
+        }else if (calculoDoIMC < 30){
             classificacaoDoIMC = 'um pouco acima do peso.';
-        }else if (classificacaoDoIMC < 35){
+        }else if (calculoDoIMC < 35){
             classificacaoDoIMC = 'com obesidade grau I.';
-        }else if (classificacaoDoIMC < 40) {
+        }else if (calculoDoIMC < 40) {
             classificacaoDoIMC = 'com obesidade grau II.';
         }else {
             classificacaoDoIMC = 'com obesidade grau III, cuidado!';
