@@ -1,4 +1,4 @@
-function validar() {
+const validar = () => {
   let cpf = document.getElementById("cpf").value;
 
   if (validarCPF(cpf)) {
@@ -6,51 +6,43 @@ function validar() {
   } else {
     alert("CPF Inválido!");
   }
-}
+};
 
-function validarCPF(cpf) {
-  let numeros, digitos, soma, i, resultado, digitosIguais;
+const validarCPF = (cpf) => {
+  cpf = cpf.replace(/\D/g, "");
 
-  digitosIguais = 1;
-
-  if (cpf.length < 11) {
+  if (!validarTamanhoCPF(cpf) || !validarDigitosIguais(cpf) || !validarDigitosVerificadores(cpf)) {
     return false;
   }
+  return true;
+};
 
-  for (i = 0; i < cpf.length - 1; i++)
-    if (cpf.charAt(i) != cpf.charAt(i + 1)) {
-      digitosIguais = 0;
-      break;
+const validarTamanhoCPF = (cpf) => {
+  let resultadoTamanhoCPF = cpf.length === 11;
+  return resultadoTamanhoCPF;
+};
+
+const validarDigitosIguais = (cpf) => {
+  let resultadoDigitosIguais = !/^(\d)\1{10}$/.test(cpf);
+  return resultadoDigitosIguais;
+};
+
+const validarDigitosVerificadores = (cpf) => {
+  const calculaDigitoVerificador = (cpf, peso) => {
+    let soma = 0;
+    for (let i = 0; i < cpf.length ; i++) {
+      soma += parseInt(cpf.charAt(i)) * peso--;
     }
+    const resto = soma % 11;
+    return (resto < 2) ? 0 : 11 - resto;
+  };
 
-  if (!digitosIguais) {
-    numeros = cpf.substring(0, 9);
-    digitos = cpf.substring(9);
-    soma = 0;
+  const digitoVerificador1 = calculaDigitoVerificador(cpf.substring(0, 9), 10);
+  const digitoVerificador2 = calculaDigitoVerificador(cpf.substring(0, 10), 11);
 
-    for (i = 10; i > 1; i--) soma += numeros.charAt(10 - i) * i;
-    resultado = soma % 11 < 2 ? 0 : 11 - (soma % 11);
+  return parseInt(cpf.charAt(9)) === digitoVerificador1 && parseInt(cpf.charAt(10)) === digitoVerificador2;
+};
 
-    if (resultado != digitos.charAt(0)) {
-      return false;
-    }
-
-    numeros = cpf.substring(0, 10);
-    soma = 0;
-
-    for (i = 11; i > 1; i--) soma += numeros.charAt(11 - i) * i;
-    resultado = soma % 11 < 2 ? 0 : 11 - (soma % 11);
-
-    if (resultado != digitos.charAt(1)) {
-      return false;
-    }
-
-    return true;
-  } else {
-    return false;
-  }
-}
-
-function limparCampo() {
+const limparCampo = () => {
   window.location.reload();
-}
+};
